@@ -24,10 +24,6 @@ from cinema.serializers import (
 )
 
 
-class IsAdmin:
-    pass
-
-
 class GenreViewSet(mixins.ListModelMixin,
                    mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
@@ -49,13 +45,6 @@ class ActorViewSet(mixins.ListModelMixin,
     serializer_class = ActorSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAdminOrIfAuthenticatedReadOnly]
-
-    # def get_permissions(self):
-    #     if self.action == "list":
-    #         return [IsAuthenticated()]
-    #     if self.action == "create":
-    #         return [IsAdminUser()]
-    #     return [IsAdminOrIfAuthenticatedReadOnly()]
 
 
 class CinemaHallViewSet(mixins.ListModelMixin,
